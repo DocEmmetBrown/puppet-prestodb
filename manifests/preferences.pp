@@ -17,7 +17,7 @@ class presto::preferences {
   $group_name = 'presto'
 
   #Global vars
-  $config_dir = '/etc/presto'
+
   $install_dir = '/opt'
   $dir_name = $archive_basename
 
@@ -39,7 +39,7 @@ class presto::preferences {
   $discovery_uri = 'http://XX.XX.XX.XX:8080'
 
   #etc/log.properties
-  $log_level = 'INFO'
+  $log_properties = 'INFO'
 
 
 
