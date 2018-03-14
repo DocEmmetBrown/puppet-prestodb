@@ -34,7 +34,7 @@ class presto::preferences {
   $node_scheduler_include_coordinator = true
   $http_server_http_port = '8080'
   $query_max_memory = '50GB'
-  $query_max_memory_per_node = '1GB'
+  $query_max_memory_per_node = '500MB'
   $discovery_server_enabled = true
   $discovery_uri = 'http://XX.XX.XX.XX:8080'
 
