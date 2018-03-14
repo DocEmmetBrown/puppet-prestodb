@@ -8,18 +8,25 @@
 #   include presto::install
 class presto::install (
   $dir_name = $presto::preferences::dir_name,
-  $archive_path = $presto::preferences::archive_path,
   $install_dir = $presto::preferences::install_dir,
+  $archive_path = $presto::preferences::archive_path,
+  $version = $presto::preferences::version,
   ) inherits presto::preferences {
 
   $dirname = $dir_name
   $filename = "${dirname}.tar.gz"
   $install_path = "${install_dir}/${dirname}"
 
-  #file { '/opt/presto':
-  #  ensure => 'link',
-  #  target => $install_path
-  #}
+  file {
+    $install_dir:
+      ensure => directory,
+      ;
+    "${install_dir}/presto":
+      ensure  => 'link',
+      target  => $install_path,
+      require => File[$install_dir]
+
+  }
 
   archive { $filename:
     path          => "/tmp/${filename}",
@@ -30,7 +37,7 @@ class presto::install (
     extract_path  => '/opt',
     creates       => $install_path,
     cleanup       => true,
-    require       => File[$install_path],
+    require       => File[$install_dir],
   }
 
   #exec { 'tomcat permission':

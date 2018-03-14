@@ -9,13 +9,14 @@
 class presto::preferences {
   #install
   $version = '0.196'
-  $archive_path = "https://repo1.maven.org/maven2/com/facebook/presto/presto-server/${version}/presto-server-${version}.tar.gz"
+  $archive_basename = "presto-server-${version}"
+  $archive_path = "https://repo1.maven.org/maven2/com/facebook/presto/presto-server/${version}/${archive_basename}.tar.gz"
   #TODO find a way to get the latest
 
   #Global vars
   $config_dir = '/etc/presto'
   $install_dir = '/opt/'
-  $dir_name = 'presto'
+  $dir_name = $archive_basename
 
 
   #etc/node.properties
@@ -25,7 +26,7 @@ class presto::preferences {
 
   #etc/jvm.config
   $jvm_max_memory_m = round($::memorysize_mb * 0.8)
-  
+
   #etc/config.properties
   $coordinator = true
   $node_scheduler_include_coordinator = true
