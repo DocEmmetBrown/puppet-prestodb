@@ -7,7 +7,8 @@
 # @example
 #   include presto::config
 class presto::config (
-  $install_path = $presto::preferences::install_path,
+  $dir_name = $presto::preferences::dir_name,
+  $install_dir = $presto::preferences::install_dir,
   $node_environment = $presto::preferences::node_environment,
   $node_id = $presto::preferences::node_id,
   $node_data_dir = $presto::preferences::node_data_dir,
@@ -21,7 +22,7 @@ class presto::config (
   $discovery_uri = $presto::preferences::discovery_uri,
   $log_properties = $presto::preferences::log_properties,
   ) inherits presto::preferences {
-
+  $install_path = "${install_dir}/${dir_name}"
   $config_dir = "${install_path}/etc"
 
   file {
