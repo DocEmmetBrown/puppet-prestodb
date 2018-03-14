@@ -33,6 +33,9 @@ class presto::config (
   file {
     $config_dir:
       ensure => directory,
+      ;
+    "${config_dir}/catalog":
+      ensure => directory,
   }
 
   file {
