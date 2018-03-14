@@ -32,20 +32,24 @@ class presto::config (
 
   file {
     "${config_dir}/node.properties":
-      ensure => present,
-      source => template('presto/etc/node.properties.erb')
+      ensure  => present,
+      content => template('presto/etc/node.properties.erb'),
+      require => File[$config_dir]
       ;
     "${config_dir}/config.properties":
-      ensure => present,
-      source => template('presto/etc/config.properties.erb')
+      ensure  => present,
+      content => template('presto/etc/config.properties.erb'),
+      require => File[$config_dir]
       ;
     "${config_dir}/jvm.config":
-      ensure => present,
-      source => template('presto/etc/jvm.config.erb')
+      ensure  => present,
+      content => template('presto/etc/jvm.config.erb'),
+      require => File[$config_dir]
       ;
     "${config_dir}/log.properties":
-      ensure => present,
-      source => template('presto/etc/log.properties.erb')
+      ensure  => present,
+      content => template('presto/etc/log.properties.erb'),
+      require => File[$config_dir]
   }
 
 }
