@@ -31,7 +31,7 @@ class presto::install (
   file {
     $install_dir:
       ensure => directory,
-      user   => $user_name,
+      owner  => $user_name,
       group  => $group_name,
       ;
     "${install_dir}/presto":
