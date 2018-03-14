@@ -16,7 +16,7 @@ define presto::catalog (
 
     file { "${config_dir}/catalog/${title}.properties" :
       ensure  => present,
-      content => template('presto/catalog.erb'),
+      content => template('presto/etc/catalog.erb'),
     }
 
 
