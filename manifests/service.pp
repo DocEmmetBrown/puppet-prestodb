@@ -13,6 +13,6 @@ class presto::service (
     description => 'presto',
     after       => 'network.target',
     user        => 'presto',
-    execstart   => '/opt/presto/bin/launcher start',
+    execstart   => '/opt/presto/bin/launcher run',
   }
 }
