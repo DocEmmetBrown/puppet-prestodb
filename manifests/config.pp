@@ -21,6 +21,7 @@ class presto::config (
   $discovery_uri = $presto::preferences::discovery_uri,
   $log_properties = $presto::preferences::log_properties,
   ) inherits presto::preferences {
+
   $config_dir = "${install_path}/etc"
 
   file {
@@ -31,19 +32,19 @@ class presto::config (
   file {
     "${config_dir}/node.properties":
       ensure => present,
-      source => template('presto/node.properties.erb')
+      source => template('presto/etc/node.properties.erb')
       ;
     "${config_dir}/config.properties":
       ensure => present,
-      source => template('presto/config.properties.erb')
+      source => template('presto/etc/config.properties.erb')
       ;
     "${config_dir}/jvm.config":
       ensure => present,
-      source => template('presto/jvm.config.erb')
+      source => template('presto/etc/jvm.config.erb')
       ;
     "${config_dir}/log.properties":
       ensure => present,
-      source => template('presto/log.properties.erb')
+      source => template('presto/etc/log.properties.erb')
   }
 
 }
