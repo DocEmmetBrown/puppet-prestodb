@@ -25,6 +25,11 @@ class presto::config (
   $install_path = "${install_dir}/${dir_name}"
   $config_dir = "${install_path}/etc"
 
+  File {
+    owner => $::presto::user_name,
+    group => $::presto::group_name,
+  }
+
   file {
     $config_dir:
       ensure => directory,
