@@ -31,6 +31,8 @@ class presto::install (
   file {
     $install_dir:
       ensure => directory,
+      user   => $user_name,
+      group  => $group_name,
       ;
     "${install_dir}/presto":
       ensure  => 'link',
@@ -51,12 +53,6 @@ class presto::install (
     group         => $group_name,
     cleanup       => true,
     require       => File[$install_dir],
-  }
-
-  exec { 'presto permission':
-    command   => "chown ${user_name}:${group_name} ${install_path}",
-    path      => $::path,
-    subscribe => Archive[$filename],
   }
 
 }
