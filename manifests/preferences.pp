@@ -8,16 +8,18 @@
 #   include presto::preferences
 class presto::preferences {
   #install
-  $version = '0.196'
+  $version = '0.196' #TODO find a clean way to get the latest
   $archive_basename = "presto-server-${version}"
   $archive_path = "https://repo1.maven.org/maven2/com/facebook/presto/presto-server/${version}/${archive_basename}.tar.gz"
-  #TODO find a way to get the latest
+
+  #user
+  $user_name = 'presto'
+  $group_name = 'presto'
 
   #Global vars
   $config_dir = '/etc/presto'
   $install_dir = '/opt'
   $dir_name = $archive_basename
-
 
   #etc/node.properties
   $node_environment = 'production'

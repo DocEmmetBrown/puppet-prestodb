@@ -7,6 +7,8 @@
 # @example
 #   include presto::install
 class presto::install (
+  $user_name = $presto::preferences::user_name,
+  $group_name = $presto::preferences::group_name,
   $dir_name = $presto::preferences::dir_name,
   $install_dir = $presto::preferences::install_dir,
   $archive_path = $presto::preferences::archive_path,
@@ -16,6 +18,15 @@ class presto::install (
   $dirname = $dir_name
   $filename = "${dirname}.tar.gz"
   $install_path = "${install_dir}/${dirname}"
+
+  group { $group_name:
+    ensure => present,
+  }
+
+  user { $user_name:
+    ensure => present,
+    groups => [ $group_name ],
+  }
 
   file {
     $install_dir:
@@ -34,16 +45,18 @@ class presto::install (
     checksum_url  => "${archive_path}.sha1",
     checksum_type => 'sha1',
     extract       => true,
-    extract_path  => '/opt',
+    extract_path  => $install_dir,
     creates       => $install_path,
+    user          => $user_name,
+    group         => $group_name,
     cleanup       => true,
     require       => File[$install_dir],
   }
 
-  #exec { 'tomcat permission':
-  #  command   => "chown tomcat:tomcat ${install_path}",
-  #  path      => $::path,
-  #  subscribe => Archive[$filename],
-  #}
+  exec { 'presto permission':
+    command   => "chown ${user_name}:${group_name} ${install_path}",
+    path      => $::path,
+    subscribe => Archive[$filename],
+  }
 
 }
