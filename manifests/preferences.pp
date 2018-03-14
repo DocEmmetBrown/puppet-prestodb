@@ -15,7 +15,7 @@ class presto::preferences {
 
   #Global vars
   $config_dir = '/etc/presto'
-  $install_dir = '/opt/'
+  $install_dir = '/opt'
   $dir_name = $archive_basename
 
 
