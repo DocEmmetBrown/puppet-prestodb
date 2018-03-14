@@ -1,0 +1,9 @@
+coordinator=<%= @coordinator %>
+<% if @coordinator %>
+node-scheduler.include-coordinator=<%= @node_scheduler_include_coordinator %>
+discovery-server.enabled=<%= @discovery_server_enabled %>
+<% end %>
+http-server.http.port=<%= @http_server_http_port %>
+query.max-memory=<%= @query_max_memory %>
+query.max-memory-per-node=<%= @query_max_memory_per_node %>
+discovery.uri=<%= @discovery_uri %>
