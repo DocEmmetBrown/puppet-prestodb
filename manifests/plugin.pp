@@ -19,9 +19,9 @@ define presto::plugin(
     ensure        => present,
     extract       => true,
     extract_path  => "/opt/presto/plugin/${directory}",
-    source        =>  $url
-    checksum      => $checksum
-    checksum_type => $checksum_type
+    source        => $url,
+    checksum      => $checksum,
+    checksum_type => $checksum_type,
     creates       => "/opt/presto/plugin/${title}",
     cleanup       => true,
   }
