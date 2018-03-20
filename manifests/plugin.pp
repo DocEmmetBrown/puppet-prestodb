@@ -17,13 +17,14 @@ define presto::plugin(
 
   archive { $title :
     ensure        => present,
-    extract       => true,
-    extract_path  => "/opt/presto/plugin/${directory}",
+    path          => "/opt/presto/plugin/${title}",
+    #extract       => true,
+    #extract_path  => "/opt/presto/plugin/${directory}",
     source        => $url,
     checksum      => $checksum,
     checksum_type => $checksum_type,
     creates       => "/opt/presto/plugin/${title}",
-    cleanup       => true,
+    #cleanup       => true,
   }
 
 }
