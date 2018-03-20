@@ -11,14 +11,14 @@ define presto::plugin(
   $directory,
   $url,
   $checksum = undef,
-  $checksum_type = undef
+  $checksum_type = undef,
 
 ) {
 
   archive { $title :
     ensure        => present,
     extract       => true,
-    extract_path  => '/opt/presto/plugin/',
+    extract_path  => "/opt/presto/plugin/${directory}",
     source        =>  $url
     checksum      => $checksum
     checksum_type => $checksum_type
